@@ -206,6 +206,68 @@ body.light-theme .switch i { transform: translateX(-14px); background: #e8ff87; 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
 
 
+
+/* Ajustes aplicados à página principal publicada */
+:root { --header-height: 62px; }
+.site-header { gap: 14px; }
+.brand-mark { font-size: 25px; }
+.main-nav { gap: 5px; }
+.nav-link { padding: 8px 10px; font-size: 11px; }
+.hero { min-height: 330px; padding-top: 8px; padding-bottom: 12px; gap: 12px; }
+.portrait-stage { width: min(100%, 270px); height: 295px; }
+.portrait { max-height: 270px; }
+h1 { font-size: clamp(34px, 3.3vw, 44px); }
+.role { margin-bottom: 10px; font-size: 14px; }
+.intro { max-width: 460px; font-size: 13px; line-height: 1.4; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.hero-actions { gap: 10px; margin-top: 13px; }
+.stats { gap: 16px; margin-top: 17px; }
+.technology-section { padding-top: 8px; padding-bottom: 11px; }
+.section-kicker, .section-title { margin-bottom: 10px; }
+.technology-grid { gap: 8px; }
+.technology-card { min-height: 58px; gap: 3px; font-size: 10px; }
+.projects-section { padding-top: 10px; padding-bottom: 18px; }
+.projects-grid { gap: 10px; }
+.project-card { min-height: 112px; grid-template-columns: 46px 1fr 18px; gap: 9px; padding: 11px 12px; }
+.project-icon { width: 44px; height: 44px; }
+.project-copy h3 { font-size: 14px; }
+.project-copy p { margin-top: 4px; font-size: 10px; line-height: 1.35; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.tags { gap: 4px; }
+.tags span { padding: 3px 6px; font-size: 9px; }
+.contact-section { min-height: 88px; padding-top: 12px; padding-bottom: 12px; }
+.contact-intro h2 { font-size: 17px; }
+.contact-intro p { font-size: 11px; }
+.contact-button { min-width: 105px; min-height: 38px; padding: 0 10px; font-size: 11px; }
+
+@media (max-width: 850px) {
+  .hero { min-height: 320px; }
+  .portrait-stage { width: min(100%, 245px); height: 270px; }
+  .stats { gap: 10px 15px; margin-top: 14px; }
+}
+
+@media (max-width: 560px) {
+  :root { --header-height: 56px; }
+  .hero { min-height: 0; padding: 12px 16px 18px; }
+  .portrait-stage { width: min(64vw, 220px); height: min(66vw, 225px); min-height: 190px; margin-bottom: 4px; }
+  h1 { font-size: 34px; }
+  .role { margin: 5px 0 8px; font-size: 12px; }
+  .intro { max-width: 100%; font-size: 12px; line-height: 1.35; }
+  .hero-actions { gap: 8px; margin-top: 11px; }
+  .stats { gap: 8px 12px; margin-top: 12px; }
+  .technology-section { padding-top: 9px; padding-bottom: 10px; }
+  .section-kicker { font-size: 14px; }
+  .technology-grid { gap: 6px; }
+  .technology-card { min-height: 52px; font-size: 9px; }
+  .projects-section { padding-top: 10px; padding-bottom: 14px; }
+  .section-title { font-size: 17px; }
+  .project-card { min-height: 0; grid-template-columns: 38px 1fr 14px; gap: 8px; padding: 9px; }
+  .project-icon { width: 36px; height: 36px; }
+  .project-copy h3 { font-size: 13px; }
+  .project-copy p { margin-bottom: 7px; font-size: 10px; }
+  .contact-section { min-height: 0; padding: 14px 16px; gap: 12px; }
+  .contact-actions { gap: 6px; }
+  .contact-button { min-height: 36px; }
+}
+
 </style>
   </head>
   <body>
