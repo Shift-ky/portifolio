@@ -140,3 +140,16 @@ body.light-theme .nav-link, body.light-theme .technology-card, body.light-theme 
   .project-icon { top: 139px; }
   .contact-section { align-items: flex-start; flex-direction: column; padding: 48px 22px 30px; }
 }
+
+
+/* Moldura neon atualizada do retrato */
+.portrait-frame { display: none !important; }
+.portrait-stage::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  background: url('./frames/Moldura%20Octogonal%20Neon%20Verde%20Transparente.png') center / contain no-repeat;
+  filter: drop-shadow(0 0 22px rgba(55,255,133,.4));
+}
