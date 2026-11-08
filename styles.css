@@ -41,7 +41,8 @@ main { overflow: hidden; }
 .hero-art { position: absolute; inset: 6% -17% 5% 38%; z-index: -1; background: radial-gradient(ellipse, rgba(13, 86, 43, .3), transparent 64%); }
 .portrait-stage { position: relative; display: grid; place-items: center; min-height: 440px; isolation: isolate; }
 .portrait-glow { position: absolute; width: 72%; aspect-ratio: 1; border-radius: 50%; background: rgba(43, 255, 121, .12); filter: blur(50px); }
-.portrait-frame { position: absolute; z-index: 2; width: min(100%, 460px); height: auto; filter: drop-shadow(0 0 22px rgba(55,255,133,.4)); }
+.portrait-frame { display: none; }
+.portrait-stage::after { content: ''; position: absolute; inset: 0; z-index: 2; background: url('./frames/moldura.png') center / contain no-repeat; filter: drop-shadow(0 0 22px rgba(55,255,133,.4)); pointer-events: none; }
 .portrait { position: relative; z-index: 1; width: min(75%, 340px); max-height: 440px; object-fit: contain; object-position: bottom; filter: drop-shadow(0 16px 30px rgba(0,0,0,.55)); }
 .hero-content { max-width: 650px; }
 .terminal-line { color: #c1d8c7; font: 13px 'JetBrains Mono', monospace; }
