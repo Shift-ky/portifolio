@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#020805">
+<title>Editar portfólio | Robson Costa</title>
+<style>
+:root{color-scheme:dark;--bg:#020805;--panel:#06120a;--line:rgba(41,255,56,.55);--green:#29ff38;--muted:#b8c4ba;font-family:Inter,system-ui,Segoe UI,sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 80% 0%,#062210,#020805 56%);color:#f4faf4}
+header{padding:22px clamp(18px,4vw,54px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px}
+a{color:var(--green)}.brand{font-weight:800;color:#fff;text-decoration:none}.brand span{color:var(--green)}
+main{width:min(1440px,100%);margin:auto;padding:24px clamp(16px,3vw,40px) 40px}
+h1{font-size:clamp(24px,3vw,34px);margin:0 0 8px}p{color:var(--muted);line-height:1.5;margin:0 0 20px}
+.layout{display:grid;grid-template-columns:minmax(300px,420px) minmax(0,1fr);gap:22px;align-items:start}
+.panel{background:rgba(5,18,9,.94);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 0 28px #0dff2710}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:750;color:#e8ffe8;margin-bottom:12px}
+label{display:block;font-size:13px;font-weight:650;margin:12px 0 6px;color:#dce9de}
+input,textarea{display:block;width:100%;padding:10px 12px;border:1px solid #275b31;border-radius:9px;background:#030a05;color:#fff;font:inherit}
+input[type=range]{padding:0;accent-color:var(--green)}input[type=file]{font-size:12px}
+textarea{min-height:82px;resize:vertical}.range-row{display:grid;grid-template-columns:1fr 62px;gap:10px;align-items:center}
+output{font-variant-numeric:tabular-nums;text-align:right;color:var(--green-soft,var(--green));font-size:13px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+button{border:1px solid var(--green);border-radius:9px;padding:11px 14px;background:#063613;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+button.primary{background:linear-gradient(110deg,#14dc27,#5cff54);color:#001d05}button:hover{filter:brightness(1.12)}
+.note{font-size:12px;margin-top:14px;padding:12px;border-left:3px solid var(--green);background:#07140a}
+.preview-wrap{position:sticky;top:16px}.preview-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:12px}
+.preview-top h2{font-size:16px;margin:0}.preview-top a{font-size:13px}
+iframe{width:100%;height:min(76vh,800px);min-height:560px;border:1px solid var(--line);border-radius:12px;background:#020805}
+.status{min-height:20px;margin:12px 0 0;color:var(--green);font-size:13px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.preview-wrap{position:static}iframe{height:70vh;min-height:500px}}
+@media(max-width:520px){header{padding:16px}.layout{gap:14px}.panel{padding:16px}iframe{height:64vh;min-height:420px}.actions button{flex:1}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="./"><span>&lt;/&gt;</span> Robson Costa · Editor</a><a href="./">Voltar ao portfólio</a></header>
+<main>
+<h1>Personalizar portfólio</h1>
+<p>Edite as informações e ajuste a foto. As alterações ficam salvas neste navegador; baixe o index atualizado para publicar a versão para todos.</p>
+<div class="layout">
+<section class="panel">
+<form id="editor">
+<fieldset><legend>Informações principais</legend>
+<label for="name">Nome</label><input id="name" value="Robson Costa" maxlength="80">
+<label for="role">Título profissional</label><input id="role" value="Analista de Banco de Dados | DBA | Full Stack (em evolução)" maxlength="140">
+<label for="intro">Apresentação</label><textarea id="intro" maxlength="500">Profissional com experiência em SQL Server, sustentação de sistemas, performance, automação e desenvolvimento de soluções para o ambiente corporativo.</textarea>
+<label for="linkedin">LinkedIn</label><input id="linkedin" type="url" value="https://www.linkedin.com/in/robson-costa-81202912b/">
+<label for="email">E-mail de contato</label><input id="email" type="email" placeholder="seu@email.com">
+</fieldset>
+<fieldset><legend>Foto do perfil</legend>
+<label for="photo">Escolher imagem</label><input id="photo" type="file" accept="image/*">
+<label for="scale">Tamanho</label><div class="range-row"><input id="scale" type="range" min="70" max="150" value="100"><output id="scaleOut">100%</output></div>
+<label for="vertical">Mover para cima ou para baixo</label><div class="range-row"><input id="vertical" type="range" min="-120" max="120" value="0"><output id="verticalOut">0 px</output></div>
+</fieldset>
+<fieldset><legend>Currículo para download</legend>
+<label for="resume">Selecionar PDF do currículo</label><input id="resume" type="file" accept="application/pdf,.pdf">
+</fieldset>
+<div class="actions"><button class="primary" type="button" id="save">Salvar alterações</button><button type="button" id="download">Baixar index.html atualizado</button><button type="button" id="reset">Restaurar padrão</button></div>
+<div class="status" id="status" role="status" aria-live="polite"></div>
+</form>
+<div class="note">“Salvar alterações” atualiza a prévia e guarda suas edições neste navegador. Para publicar para todos, use “Baixar index.html atualizado” e substitua o index.html do repositório do portfólio.</div>
+</section>
+<section class="preview-wrap">
+<div class="preview-top"><h2>Prévia em tempo real</h2><a href="./" target="_blank" rel="noopener">Abrir portfólio</a></div>
+<iframe id="preview" title="Prévia do portfólio" src="./?preview=1"></iframe>
+</section>
+</div>
+</main>
+<script>
+(() => {
+  const KEY = 'robson-portfolio-editor-v1';
+  const $ = (id) => document.getElementById(id);
+  const frame = $('preview');
+  let config = {};
+  const defaults = {name:'Robson Costa',role:'Analista de Banco de Dados | DBA | Full Stack (em evolução)',intro:'Profissional com experiência em SQL Server, sustentação de sistemas, performance, automação e desenvolvimento de soluções para o ambiente corporativo.',linkedin:'https://www.linkedin.com/in/robson-costa-81202912b/',email:'',photo:'',scale:100,vertical:0,resume:''};
+  const saved = (() => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } })();
+  config = {...defaults,...saved};
+  function escapeHTML(value){return String(value).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+  function readForm(){
+    config = {...config,name:$('name').value.trim(),role:$('role').value.trim(),intro:$('intro').value.trim(),linkedin:$('linkedin').value.trim(),email:$('email').value.trim(),scale:Number($('scale').value),vertical:Number($('vertical').value)};
+  }
+  function apply(){
+    try {
+      const doc = frame.contentDocument;
+      if(!doc || !doc.querySelector('.hero-content')) return;
+      const title = doc.querySelector('.hero-content h1');
+      const parts = config.name.split(/\s+/).filter(Boolean);
+      title.innerHTML = parts.length > 1 ? escapeHTML(parts.slice(0,-1).join(' ')) + ' <em>' + escapeHTML(parts.at(-1)) + '</em>' : escapeHTML(config.name);
+      doc.querySelector('.role').textContent = config.role;
+      doc.querySelector('.intro').textContent = config.intro;
+      const image = doc.querySelector('.portrait');
+      if(config.photo) image.src = config.photo;
+      image.style.transform = 'translateY(' + config.vertical + 'px) scale(' + (config.scale/100) + ')';
+      const linkedin = [...doc.querySelectorAll('.contact-button')].find(a=>a.href.includes('linkedin.com'));
+      if(linkedin && config.linkedin) linkedin.href = config.linkedin;
+      const email = [...doc.querySelectorAll('.contact-button')].find(a=>a.textContent.includes('E-mail'));
+      if(email && config.email) email.href = 'mailto:' + config.email;
+      const cv = doc.querySelector('.hero-actions .button-outline');
+      if(cv && config.resume){cv.href=config.resume;cv.download='curriculo.pdf';cv.target='_blank';cv.rel='noopener noreferrer';}
+    } catch {}
+  }
+  function fill(){
+    for(const id of ['name','role','intro','linkedin','email']) $(id).value=config[id]||'';
+    $('scale').value=config.scale; $('vertical').value=config.vertical;
+    $('scaleOut').value=config.scale+'%'; $('verticalOut').value=config.vertical+' px';
+  }
+  function say(message){$('status').textContent=message;}
+  $('scale').addEventListener('input',()=>{readForm();fill();apply();});
+  $('vertical').addEventListener('input',()=>{readForm();fill();apply();});
+  $('editor').addEventListener('input',()=>{readForm();apply();});
+  $('photo').addEventListener('change',async()=>{
+    const file=$('photo').files[0]; if(!file)return;
+    const data=await new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.readAsDataURL(file);});
+    const image=new Image(); image.onload=()=>{const ratio=Math.min(1,1400/Math.max(image.width,image.height));const canvas=document.createElement('canvas');canvas.width=Math.round(image.width*ratio);canvas.height=Math.round(image.height*ratio);canvas.getContext('2d').drawImage(image,0,0,canvas.width,canvas.height);config.photo=canvas.toDataURL('image/jpeg',.88);apply();say('Foto carregada e ajustada para a prévia.');}; image.src=data;
+  });
+  $('resume').addEventListener('change',async()=>{const file=$('resume').files[0];if(!file)return;if(file.type!=='application/pdf'){say('Escolha um arquivo PDF.');return;}config.resume=await new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.readAsDataURL(file);});apply();say('Currículo pronto para download na prévia.');});
+  $('save').addEventListener('click',()=>{readForm();localStorage.setItem(KEY,JSON.stringify(config));apply();say('Alterações salvas neste navegador.');});
+  $('download').addEventListener('click',()=>{apply();const doc=frame.contentDocument;if(!doc){say('A prévia ainda está carregando.');return;}const blob=new Blob(['<!doctype html>\n'+doc.documentElement.outerHTML],{type:'text/html;charset=utf-8'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='index.html';link.click();URL.revokeObjectURL(link.href);say('index.html atualizado baixado.');});
+  $('reset').addEventListener('click',()=>{localStorage.removeItem(KEY);config={...defaults};fill();apply();say('Padrões restaurados.');});
+  frame.addEventListener('load',()=>{fill();apply();});
+  fill();frame.addEventListener('load',apply);
+})();
+</script>
+</body>
+</html>
