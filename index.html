@@ -205,6 +205,23 @@ body.light-theme .switch i { transform: translateX(-14px); background: #e8ff87; 
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
 
+
+/* Portfólio em páginas de viewport: navegação troca painéis sem rolagem. */
+html,body{height:100%;overflow:hidden;overflow:clip;scroll-behavior:auto}
+body{height:100vh;height:100dvh;display:flex;flex-direction:column}
+.site-header{position:relative;top:auto;flex:0 0 var(--header-height)}
+main{flex:1 1 auto;height:calc(100dvh - var(--header-height));min-height:0;overflow:hidden;position:relative}
+main>.hero,main>.technology-section,main>.projects-section,main>.contact-section{position:absolute;inset:0;width:100%;height:100%;max-height:100%;min-height:0;overflow:hidden;display:none;margin:0}
+main>.hero.is-active{display:grid}
+main>.technology-section.is-active{display:flex;flex-direction:column;justify-content:center}
+main>.projects-section.is-active{display:flex;flex-direction:column;justify-content:center}
+main>.contact-section.is-active{display:flex}
+.hero{min-height:0}
+.portrait{transform:translateY(var(--portrait-offset-y,0px)) scale(var(--portrait-scale,1));transform-origin:center bottom}
+@media(max-height:760px) and (min-width:561px){.hero{padding-block:8px}.portrait-stage{height:min(45dvh,330px)}.stats{margin-top:16px}.technology-section{padding-block:8px}.technology-grid{gap:8px}.technology-card{min-height:64px}.projects-section{padding-block:12px}.section-title{margin-bottom:10px}.project-card{min-height:0;padding-block:10px}.contact-section{padding-block:12px}}
+@media(max-width:850px){main>.hero.is-active{display:flex;flex-direction:column;justify-content:center;gap:0;padding-block:10px}.hero{min-height:0}.portrait-stage{height:min(34dvh,255px);min-height:0;margin:0 auto 4px}.hero-content{width:100%;max-width:680px}.hero-content h1{font-size:clamp(28px,5.5vw,43px)}.intro{font-size:clamp(12px,1.7vw,14px);line-height:1.4}.stats{margin-top:12px;justify-content:center}.hero-actions{margin-top:12px;justify-content:center}}
+@media(max-width:560px){main>.hero.is-active{padding:4px 14px}.portrait-stage{width:min(53vw,210px);height:min(27dvh,205px);min-height:0;margin-bottom:2px}.hero-content{padding:0}.terminal-line{margin-bottom:4px}h1,.hero-content h1{font-size:clamp(27px,8vw,37px);line-height:1.02}.role{margin:4px 0 7px;font-size:12px}.intro{font-size:12px;line-height:1.35}.hero-actions{gap:8px;margin-top:10px}.button{min-height:38px}.stats{gap:8px 14px;margin-top:10px}.stat-icon{font-size:21px}.stat-icon.github{font-size:23px}.stat-icon.bolt{font-size:26px}.stat strong{font-size:11px}.stat small{font-size:8px}.technology-section{padding:10px 14px}.section-kicker{margin-bottom:7px}.technology-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.technology-card{min-height:clamp(48px,8dvh,61px);gap:2px;padding:3px;font-size:9px}.technology-card img,.text-logo{width:27px;height:27px}.projects-section{padding:10px 14px}.section-title{margin-bottom:8px;font-size:18px}.projects-grid{gap:8px}.project-card{min-height:0;grid-template-columns:38px 1fr 16px;gap:8px;padding:9px}.project-icon{width:36px;height:36px}.project-copy h3{margin-bottom:3px;font-size:13px}.project-copy p{font-size:10px;line-height:1.3}.tags{gap:4px;margin-top:5px}.tags span{padding:3px 6px;font-size:8px}.contact-section{justify-content:center;padding:14px;gap:14px}.contact-intro{gap:9px}.terminal-icon{width:40px;height:38px}.contact-intro h2{font-size:16px}.contact-intro p{font-size:10px}.contact-actions{gap:6px}.contact-button{min-height:38px;font-size:10px}}
+@media(max-height:620px) and (max-width:850px){.portrait-stage{height:min(24dvh,155px)}.hero-content h1{font-size:clamp(25px,6vw,34px)}.role{margin:3px 0 5px}.intro{font-size:11px;line-height:1.25}.hero-actions{margin-top:7px}.button{min-height:34px}.stats{margin-top:7px}.technology-card{min-height:45px}.technology-card img,.text-logo{width:24px;height:24px}.contact-section{gap:9px}.contact-actions{gap:5px}}
 </style>
   </head>
   <body>
@@ -220,7 +237,7 @@ body.light-theme .switch i { transform: translateX(-14px); background: #e8ff87; 
         <a class="nav-link" href="#sobre"><span>♙</span> Sobre</a>
         <a class="nav-link" href="#projetos"><span>▣</span> Projetos</a>
         <a class="nav-link" href="#habilidades"><span>⌘</span> Habilidades</a>
-        <a class="nav-link" href="#experiencia"><span>▤</span> Experiência</a>
+        <a class="nav-link" href="https://github.com/Shift-ky/Curriculum/raw/refs/heads/main/curriculum/ROBSON1.1.pdf" download="ROBSON1.1.pdf"><span>↓</span> Currículo</a>
         <a class="nav-link" href="#contato"><span>✉</span> Contato</a>
       </nav>
       <button class="theme-toggle" aria-label="Alternar tema claro e escuro" title="Alternar tema"><span class="sun">☼</span><span class="switch"><i></i></span></button>
@@ -241,7 +258,7 @@ body.light-theme .switch i { transform: translateX(-14px); background: #e8ff87; 
           <p class="intro">Profissional com experiência em SQL Server, sustentação de sistemas, performance, automação e desenvolvimento de soluções para o ambiente corporativo.<b class="cursor" aria-hidden="true"></b></p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projetos"><span aria-hidden="true">🚀</span> Ver Projetos</a>
-            <a class="button button-outline" href="https://github.com/Shift-ky/Curriculum/blob/main/curriculum/ROBSON1.1.pdf" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▣</span> Currículo</a>
+            <a class="button button-outline" href="https://github.com/Shift-ky/Curriculum/raw/refs/heads/main/curriculum/ROBSON1.1.pdf" download="ROBSON1.1.pdf" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▣</span> Currículo</a>
           </div>
           <div class="stats" id="experiencia">
             <div class="stat"><span class="stat-icon database" aria-hidden="true">▤</span><div><strong>+5 anos</strong><small>com SQL Server</small></div></div>
@@ -319,14 +336,50 @@ menuButton.addEventListener('click', () => {
   menuButton.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
 });
 
+const panels = [...document.querySelectorAll('main > .hero, main > .technology-section, main > .projects-section, main > .contact-section')];
+function showPanel(hash, updateHistory = true) {
+  const target = hash.replace('#', '');
+  const panelId = ['sobre', 'experiencia'].includes(target) ? 'inicio' : target;
+  const panel = panels.find((item) => item.id === panelId);
+  if (!panel) return;
+  panels.forEach((item) => item.classList.toggle('is-active', item === panel));
+  navigation.querySelectorAll('.nav-link').forEach((item) => item.classList.toggle('active', item.getAttribute('href') === '#' + target || (panelId === 'inicio' && item.getAttribute('href') === '#inicio')));
+  if (updateHistory) history.replaceState(null, '', '#' + target);
+}
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    showPanel(link.getAttribute('href'));
+    navigation.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Abrir menu');
+  });
+});
 navigation.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
     navigation.classList.remove('open');
     menuButton.setAttribute('aria-expanded', 'false');
-    navigation.querySelectorAll('.nav-link').forEach((item) => item.classList.remove('active'));
-    link.classList.add('active');
+    menuButton.setAttribute('aria-label', 'Abrir menu');
   });
 });
+showPanel(location.hash || '#inicio', false);
+
+try {
+  const saved = JSON.parse(localStorage.getItem('robson-portfolio-editor-v1') || '{}');
+  const escapeHTML = (value) => String(value).replace(/[&<>\"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[char]));
+  if (saved.name) { const parts = saved.name.trim().split(/\s+/).filter(Boolean); document.querySelector('.hero-content h1').innerHTML = parts.length > 1 ? escapeHTML(parts.slice(0, -1).join(' ')) + ' <em>' + escapeHTML(parts.at(-1)) + '</em>' : escapeHTML(saved.name); }
+  if (saved.role) document.querySelector('.role').textContent = saved.role;
+  if (saved.intro) document.querySelector('.intro').textContent = saved.intro;
+  if (saved.photo) document.querySelector('.portrait').src = saved.photo;
+  const portrait = document.querySelector('.portrait');
+  portrait.style.transform = 'translateY(' + (Number(saved.vertical) || 0) + 'px) scale(' + ((Number(saved.scale) || 100) / 100) + ')';
+  const linkedin = [...document.querySelectorAll('.contact-button')].find((link) => link.href.includes('linkedin.com'));
+  if (linkedin && saved.linkedin) linkedin.href = saved.linkedin;
+  const email = [...document.querySelectorAll('.contact-button')].find((link) => link.textContent.includes('E-mail'));
+  if (email && saved.email) email.href = 'mailto:' + saved.email;
+  const cv = document.querySelector('.hero-actions .button-outline');
+  if (cv && saved.resume) { cv.href = saved.resume; cv.download = 'curriculo.pdf'; cv.target = '_blank'; cv.rel = 'noopener noreferrer'; }
+} catch (error) { console.warn('Não foi possível carregar as alterações do editor.', error); }
 
 </script>
   </body>
