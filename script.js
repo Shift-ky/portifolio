@@ -32,3 +32,12 @@ if ('IntersectionObserver' in window) {
   }, { rootMargin: '-25% 0px -55% 0px', threshold: [0, .2, .5] });
   sections.forEach((section) => observer.observe(section));
 }
+
+
+const resumeButton = document.querySelector('.button-outline[href="#experiencia"]');
+if (resumeButton) {
+  resumeButton.href = 'https://github.com/Shift-ky/Curriculum/blob/main/curriculum/ROBSON1.1.pdf';
+  resumeButton.target = '_blank';
+  resumeButton.rel = 'noopener noreferrer';
+  resumeButton.innerHTML = '<span aria-hidden="true">▣</span> Currículo';
+}
