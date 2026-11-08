@@ -39,9 +39,9 @@ button { color: inherit; font: inherit; }
 main { overflow: hidden; }
 .hero { position: relative; display: grid; grid-template-columns: minmax(250px, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(25px, 6vw, 90px); width: min(1160px, calc(100% - 48px)); min-height: 690px; margin: 0 auto; padding: 70px 0 55px; }
 .hero-art { position: absolute; inset: 6% -17% 5% 38%; z-index: -1; background: radial-gradient(ellipse, rgba(13, 86, 43, .3), transparent 64%); }
-.portrait-stage { position: relative; display: grid; place-items: center; min-height: 440px; isolation: isolate; background-image: url('/portifolio/frames/moldura.png'); background-position: center; background-size: contain; background-repeat: no-repeat; }
+.portrait-stage { position: relative; display: grid; place-items: center; min-height: 440px; isolation: isolate; }
 .portrait-glow { position: absolute; width: 72%; aspect-ratio: 1; border-radius: 50%; background: rgba(43, 255, 121, .12); filter: blur(50px); }
-.portrait-frame { display: none; }
+.portrait-frame { position: absolute; z-index: 2; width: min(100%, 460px); height: auto; filter: drop-shadow(0 0 22px rgba(55,255,133,.4)); }
 .portrait { position: relative; z-index: 1; width: min(75%, 340px); max-height: 440px; object-fit: contain; object-position: bottom; filter: drop-shadow(0 16px 30px rgba(0,0,0,.55)); }
 .hero-content { max-width: 650px; }
 .terminal-line { color: #c1d8c7; font: 13px 'JetBrains Mono', monospace; }
