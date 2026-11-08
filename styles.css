@@ -201,3 +201,7 @@ section[id], footer[id] { scroll-margin-top: 72px; }
   .project-icon { top: 96px; }
   .contact-section { gap: 20px; min-height: 0; padding: 38px 20px 24px; }
 }
+
+/* Textos compactos sem remover seu conteúdo da página */
+.intro { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.project-copy p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
